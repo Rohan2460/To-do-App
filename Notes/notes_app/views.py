@@ -17,8 +17,9 @@ def home(request):
 @login_required
 def add_note(request):
     title = str(request.POST["title"])
-    date = datetime.today()
-    Note.objects.create(user_id=request.user.id, title=title, date=date)
+    if title:
+        date = datetime.today()
+        Note.objects.create(user_id=request.user.id, title=title, date=date)
     return redirect("home")
 
 
